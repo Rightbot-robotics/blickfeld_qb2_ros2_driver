@@ -2,10 +2,15 @@
 
 from launch import LaunchDescription
 from launch_ros.descriptions import ComposableNode
-from launch_ros.actions import ComposableNodeContainer
-
+from launch_ros.actions import ComposableNodeContainer, Node
 
 def generate_launch_description():
+    ld = LaunchDescription()
+
+    static_tf = Node(package = "tf2_ros", 
+                       executable = "static_transform_publisher",
+                       arguments = ["0.15", "-0.06", "-0.018", "0.0", "0.0", "1.5008", "nerian_stereo_right_color_optical_frame", "lidar"])
+
     container = ComposableNodeContainer(
         name="blickfeld_qb2_component",
         namespace="",
@@ -30,4 +35,8 @@ def generate_launch_description():
         ],
         output="screen",
     )
-    return LaunchDescription([container])
+
+    ld.add_action(static_tf)
+    ld.add_action(container)
+
+    return ld
