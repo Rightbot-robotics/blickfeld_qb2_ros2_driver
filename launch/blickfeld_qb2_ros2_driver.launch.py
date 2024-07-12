@@ -9,7 +9,7 @@ def generate_launch_description():
 
     static_tf = Node(package = "tf2_ros", 
                        executable = "static_transform_publisher",
-                       arguments = ["0.232", "-0.024", "0.121", "0.029", "-0.001", "1.514", "nerian_stereo_right_color_optical_frame", "lidar"])
+                       arguments = ["0.222", "-0.024", "0.121", "0.029", "-0.001", "1.514", "nerian_stereo_right_color_optical_frame", "lidar"])
 
     container = ComposableNodeContainer(
         name="blickfeld_qb2_component",
